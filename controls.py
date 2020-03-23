@@ -12,7 +12,7 @@ class Controls(threading.Thread):
         self.q = q
         self.running = True
         #self.port = '/dev/tty.usbmodem14201'
-        self.port = '/dev/ttyAMA0'
+        self.port = '/dev/ttyACM0'
         self.ser = serial.Serial(self.port, 115200, timeout=1)
 
     def run(self):
