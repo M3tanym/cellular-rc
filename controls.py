@@ -11,14 +11,15 @@ class Controls(threading.Thread):
         threading.Thread.__init__(self)
         self.q = q
         self.running = True
-        self.port = '/dev/tty.usbmodem14201'
+        #self.port = '/dev/tty.usbmodem14201'
+        self.port = '/dev/ttyAMA0'
         self.ser = serial.Serial(self.port, 115200, timeout=1)
 
     def run(self):
         while self.running:
             line = self.ser.read(10)
             line = line.decode().strip()
-            if line[0] == '<' and line [-1] == '>' and line[2] == ':':
+            if len(line) > 4 and line[0] == '<' and line [-1] == '>' and line[2] == ':':
                 # valid so far
                 if line[1] == 'v':
                     shared.voltage = float(line[3:-2])
