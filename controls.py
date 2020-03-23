@@ -34,7 +34,7 @@ class Controls(threading.Thread):
         self.ser.write(b'<s:240>')
     def forward(self):
         self.ser.write(b'<d:256>')
-        time.sleep(0.3)
-        self.ser.write(b'<d:75>')
+        #time.sleep(0.3)
+        #self.ser.write(b'<d:160>')
     def stop(self):
         self.ser.write(b'<d:0>')
