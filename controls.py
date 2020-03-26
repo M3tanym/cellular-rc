@@ -33,8 +33,10 @@ class Controls(threading.Thread):
     def right(self):
         self.ser.write(b'<s:240>')
     def forward(self):
-        self.ser.write(b'<d:256>')
+        self.ser.write(b'<d:192>')
         #time.sleep(0.3)
         #self.ser.write(b'<d:160>')
+    def backward(self):
+        self.ser.write(b'<d:64>')
     def stop(self):
-        self.ser.write(b'<d:0>')
+        self.ser.write(b'<d:128>')

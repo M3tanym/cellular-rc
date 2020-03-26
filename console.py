@@ -23,6 +23,8 @@ class Console(threading.Thread):
                 shared.thread_controls.right()
             elif s == 'f':
                 shared.thread_controls.forward()
+            elif s == 'b':
+                shared.thread_controls.backward()
             elif s == 's':
                 shared.thread_controls.stop()
             elif s == 'v':
