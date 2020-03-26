@@ -27,16 +27,16 @@ class Controls(threading.Thread):
                     pass # for now
 
     def left(self):
-        self.ser.write(b'<s:16>')
+        self.ser.write(b'<s:-128>')
     def center(self):
-        self.ser.write(b'<s:128>')
+        self.ser.write(b'<s:0>')
     def right(self):
-        self.ser.write(b'<s:240>')
+        self.ser.write(b'<s:128>')
     def forward(self):
-        self.ser.write(b'<d:192>')
+        self.ser.write(b'<d:64>')
         #time.sleep(0.3)
         #self.ser.write(b'<d:160>')
     def backward(self):
-        self.ser.write(b'<d:64>')
+        self.ser.write(b'<d:-64>')
     def stop(self):
-        self.ser.write(b'<d:128>')
+        self.ser.write(b'<d:0>')
