@@ -1,9 +1,10 @@
 #include <Servo.h>
 // Steering range 1100 - 1900 (center 1500)
-// Driving range 1100 -  1500 (fast to stop)
-#define S_R 800
-#define D_R 400
-#define BIAS 1100
+// Driving range backwards: 900 - 1500 (fast to stop)
+// Driving range forwards 1500 - 2100 (stop to fast)
+#define S_R 400
+#define D_R 600
+#define BIAS 1500
 
 Servo servo, motor;
 
@@ -40,7 +41,7 @@ void loop() {
     }
   }
   if (started && ended) {
-    if (packet.length() <= 5 && packet.length() >= 3 && packet[1] == ':') {
+    if (packet.length() <= 6 && packet.length() >= 3 && packet[1] == ':') {
       char type = packet[0];
       String data = packet.substring(2);
       int i = atoi(data.c_str());
@@ -53,8 +54,7 @@ void loop() {
         servo.writeMicroseconds(m);
       }
       else if (type == 'd') {
-        int m = (D_R - (int)(i/256.0 * D_R)) + BIAS;
-        Serial.println(m);
+        int m = (int)(i/256.0 * D_R) + BIAS;
         motor.writeMicroseconds(m);
       }
     }
