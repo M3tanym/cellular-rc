@@ -1,0 +1,93 @@
+/* Accessories */
+.pad {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+/* Custom Styles */
+.row {
+    margin-top: 1em !important;
+}
+
+.spaced {
+    margin-bottom: 0.4em !important;
+}
+
+.cen {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+/* Overlay */
+
+iframe {
+    display: relative;
+    float: center;
+    width: 95%;
+    height: 100%;
+    border: 0px solid white;
+}
+
+.overlay {
+    width: 100%;
+    height: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    transition: 0.3s;
+}
+
+.overlay-header {
+    /* margin-top: 0.5em; */
+    width: 96%;
+    height: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.overlay-content {
+    width: 96%;
+    height: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.overlay-content iframe {
+    display: block;
+    width: 100%;
+    height: 92%;
+}
+
+.overlay a, p, h1 {
+    text-decoration: none;
+    color: lightgray;
+    display: block;
+}
+
+.btn-uv, .btn-uv:visited, .btn-uv:focus {
+    background-color: #BA55D3;
+    color: white;
+}
+
+.btn-uv:hover {
+    background-color: #9920C0;
+    color: white;
+}
+
+.btn-uv:active {
+    background-color: #700570;
+    color: white;
+}
+
+#closebtn {
+    position: absolute;
+    top: 1px;
+    left: 2%;
+    font-size: 4em;
+}
