@@ -48,8 +48,9 @@ class Connection(Thread):
 
     def connect(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.s.settimeout(0.001)
+        self.s.settimeout(1)
         self.s.connect(config.server)
+        self.s.settimeout(0.001)
 
     def send(self, data):
         x = bytes(str(data), 'utf-8')
