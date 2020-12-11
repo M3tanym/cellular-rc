@@ -1,34 +1,31 @@
 // global variable for the WebSocket
-var ws;
+let ws;
 
 function init() {
   // call these routines when the page has finished loading
   //initializeEvents();
   initializeSocket();
+  initializeJoys();
 }
 
 function initializeSocket() {
   // Open the WebSocket and set up its handlers
-  loc = "ws://" + location.host + "/ws";
+  let loc = "ws://" + location.host + "/ws";
   ws = new WebSocket(loc);
   ws.onopen = beginSocket;
   ws.onmessage = function(evt) { receiveMessage(evt.data) };
   ws.onclose = endSocket;
-  ws.onerror = endSocket;
 }
 
 function receiveMessage(msg) {
   // receiveMessage is called when any message from the server arrives on the WebSocket
   console.log("recieved: " + msg);
-  var r = JSON.parse(msg);
+  let r = JSON.parse(msg);
   processCommand(r);
 }
 
 function sendMessage(msg) {
-  // simple send
-  var m = JSON.stringify(msg);
-  console.log("sending: " + m)
-  ws.send(m);
+  ws.send(msg);
 }
 
 function beginSocket() {
@@ -37,9 +34,9 @@ function beginSocket() {
 
 function endSocket() {
   // ask the user to reload the page if the socket is lost
-  // if (confirm("Lost connection to server. Reload page?")) {
-  //   location.reload(true);
-  // }
+  if (confirm("Lost connection to server. Reload page?")) {
+    location.reload(true);
+  }
 }
 
 function processCommand(r) {
@@ -52,5 +49,12 @@ function processCommand(r) {
   }
 }
 
-//Event Listener
+function initializeJoys() {
+  let left = new JoyStick('joyLeft');
+  setInterval(function(){ sendMessage('<s:' + left.GetY() + '>'); }, 500);
+  let right = new JoyStick('joyRight');
+  setInterval(function(){ sendMessage('<d:' + right.GetX() + '>'); }, 500);
+}
+
+// Event Listener
 window.addEventListener("load", init, false);
