@@ -19,7 +19,7 @@ function initializeSocket() {
 
 function receiveMessage(msg) {
   // receiveMessage is called when any message from the server arrives on the WebSocket
-  console.log("recieved: " + msg);
+  console.log("received: " + msg);
   let r = JSON.parse(msg);
   processCommand(r);
 }
@@ -34,9 +34,9 @@ function beginSocket() {
 
 function endSocket() {
   // ask the user to reload the page if the socket is lost
-  if (confirm("Lost connection to server. Reload page?")) {
-    location.reload(true);
-  }
+  // if (confirm("Lost connection to server. Reload page?")) {
+  //   location.reload(true);
+  // }
 }
 
 function processCommand(r) {
@@ -51,9 +51,9 @@ function processCommand(r) {
 
 function initializeJoys() {
   let left = new JoyStick('joyLeft');
-  setInterval(function(){ sendMessage('<s:' + left.GetY() + '>'); }, 500);
+  setInterval(function(){ sendMessage('<s:' + left.GetY() + '>'); }, 100);
   let right = new JoyStick('joyRight');
-  setInterval(function(){ sendMessage('<d:' + right.GetX() + '>'); }, 500);
+  setInterval(function(){ sendMessage('<d:' + right.GetX() + '>'); }, 100);
 }
 
 // Event Listener

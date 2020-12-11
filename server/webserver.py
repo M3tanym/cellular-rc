@@ -52,4 +52,4 @@ class Server(Thread):
     @app.get("/")
     @app.get('/<filepath:path>')
     def send_file(self=None, filepath='index.html'):
-        return static_file(filepath, root='../client/')
+        return static_file(filepath, root='client/')
