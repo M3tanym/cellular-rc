@@ -1,6 +1,8 @@
 import queue
 
 
-q_server = queue.Queue()
+q_webserver = queue.Queue()
+q_tcpsocket = queue.Queue()
 
-thread_server = None
+thread_webserver = None
+thread_tcpsocket = None

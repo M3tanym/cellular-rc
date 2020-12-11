@@ -1,14 +1,20 @@
-import shared
-import server
+from server import shared, webserver, tcpsocket
+
 
 def main():
-    thread_server = server.Server(shared.q_server)
-    thread_server.daemon = True
-    thread_server.start()
+    shared.thread_webserver = webserver.Server(shared.q_webserver)
+    shared.thread_webserver.daemon = True
+    shared.thread_webserver.start()
 
-    print('Server up on :8000')
+    shared.thread_tcpsocket = tcpsocket.TCPSocket(shared.q_tcpsocket)
+    shared.thread_tcpsocket.daemon = True
+    shared.thread_tcpsocket.start()
 
-    thread_server.join()
+    print('Server running')
+
+    shared.thread_webserver.join()
+    shared.thread_tcpsocket.join()
+
 
 if __name__ == '__main__':
     main()
